@@ -42,8 +42,19 @@
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="161"/>
                                                         <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qw2-Fb-dzV">
+                                                                <rect key="frame" x="8" y="8" width="359" height="145"/>
+                                                            </imageView>
+                                                        </subviews>
                                                     </view>
                                                     <color key="backgroundColor" red="0.17647057769999999" green="0.20392155649999999" blue="0.21176466350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="qw2-Fb-dzV" firstAttribute="top" secondItem="uAq-vG-Uqs" secondAttribute="topMargin" id="BHl-ek-57C"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="qw2-Fb-dzV" secondAttribute="trailing" id="BTZ-U6-cy8"/>
+                                                        <constraint firstItem="qw2-Fb-dzV" firstAttribute="leading" secondItem="uAq-vG-Uqs" secondAttribute="leadingMargin" id="mHe-EZ-DR6"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="qw2-Fb-dzV" secondAttribute="bottom" id="yOJ-MV-NiI"/>
+                                                    </constraints>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
