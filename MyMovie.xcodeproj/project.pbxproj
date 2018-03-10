@@ -9,19 +9,29 @@
 /* Begin PBXBuildFile section */
 		849316DC2054225B00E6A25E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849316DB2054225B00E6A25E /* AppDelegate.swift */; };
 		849316DE2054225B00E6A25E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849316DD2054225B00E6A25E /* ViewController.swift */; };
-		849316E12054225B00E6A25E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849316DF2054225B00E6A25E /* Main.storyboard */; };
 		849316E32054225B00E6A25E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 849316E22054225B00E6A25E /* Assets.xcassets */; };
 		849316E62054225B00E6A25E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849316E42054225B00E6A25E /* LaunchScreen.storyboard */; };
+		849316F12054275900E6A25E /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849316F02054275900E6A25E /* HomeTableViewController.swift */; };
+		849316F820543F9400E6A25E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849316F720543F9400E6A25E /* Main.storyboard */; };
+		849316FB205443AC00E6A25E /* ApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849316FA205443AC00E6A25E /* ApiProvider.swift */; };
+		849316FD205443B900E6A25E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849316FC205443B900E6A25E /* Movie.swift */; };
+		849316FF2054448100E6A25E /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849316FE2054448100E6A25E /* Genre.swift */; };
+		849317012054473900E6A25E /* Studio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849317002054473900E6A25E /* Studio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		849316D82054225A00E6A25E /* MyMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849316DB2054225B00E6A25E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		849316DD2054225B00E6A25E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		849316E02054225B00E6A25E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		849316E22054225B00E6A25E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		849316E52054225B00E6A25E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		849316E72054225B00E6A25E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		849316F02054275900E6A25E /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		849316F720543F9400E6A25E /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		849316FA205443AC00E6A25E /* ApiProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProvider.swift; sourceTree = "<group>"; };
+		849316FC205443B900E6A25E /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		849316FE2054448100E6A25E /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		849317002054473900E6A25E /* Studio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Studio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +64,59 @@
 		849316DA2054225A00E6A25E /* MyMovie */ = {
 			isa = PBXGroup;
 			children = (
+				849316F92054439200E6A25E /* Provider */,
+				849316F220543C4E00E6A25E /* User Interface */,
+				849316EF2054229800E6A25E /* ViewModel */,
+				849316EE2054228F00E6A25E /* View */,
+				849316ED2054227C00E6A25E /* Model */,
 				849316DB2054225B00E6A25E /* AppDelegate.swift */,
 				849316DD2054225B00E6A25E /* ViewController.swift */,
-				849316DF2054225B00E6A25E /* Main.storyboard */,
 				849316E22054225B00E6A25E /* Assets.xcassets */,
 				849316E42054225B00E6A25E /* LaunchScreen.storyboard */,
 				849316E72054225B00E6A25E /* Info.plist */,
 			);
 			path = MyMovie;
+			sourceTree = "<group>";
+		};
+		849316ED2054227C00E6A25E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				849316FC205443B900E6A25E /* Movie.swift */,
+				849316FE2054448100E6A25E /* Genre.swift */,
+				849317002054473900E6A25E /* Studio.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		849316EE2054228F00E6A25E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				849316F02054275900E6A25E /* HomeTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		849316EF2054229800E6A25E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		849316F220543C4E00E6A25E /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				849316F720543F9400E6A25E /* Main.storyboard */,
+			);
+			path = "User Interface";
+			sourceTree = "<group>";
+		};
+		849316F92054439200E6A25E /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				849316FA205443AC00E6A25E /* ApiProvider.swift */,
+			);
+			path = Provider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,9 +178,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849316F820543F9400E6A25E /* Main.storyboard in Resources */,
 				849316E62054225B00E6A25E /* LaunchScreen.storyboard in Resources */,
 				849316E32054225B00E6A25E /* Assets.xcassets in Resources */,
-				849316E12054225B00E6A25E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,22 +191,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849316F12054275900E6A25E /* HomeTableViewController.swift in Sources */,
+				849316FB205443AC00E6A25E /* ApiProvider.swift in Sources */,
 				849316DE2054225B00E6A25E /* ViewController.swift in Sources */,
+				849316FF2054448100E6A25E /* Genre.swift in Sources */,
 				849316DC2054225B00E6A25E /* AppDelegate.swift in Sources */,
+				849317012054473900E6A25E /* Studio.swift in Sources */,
+				849316FD205443B900E6A25E /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		849316DF2054225B00E6A25E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				849316E02054225B00E6A25E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		849316E42054225B00E6A25E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -277,11 +329,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S79QP49F29;
 				INFOPLIST_FILE = MyMovie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakuraSoft.MyMovie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -292,11 +345,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S79QP49F29;
 				INFOPLIST_FILE = MyMovie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakuraSoft.MyMovie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
