@@ -9,5 +9,8 @@
 import UIKit
 
 class HomeMoviesCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var movieImage: UIImageView!
+    @IBOutlet weak var movieName: UILabel!
+    @IBOutlet weak var movieYear: UILabel!
     
 }

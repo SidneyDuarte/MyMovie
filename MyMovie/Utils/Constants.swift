@@ -16,4 +16,7 @@ struct Constants {
         static let upcomingMovies = "https://api.themoviedb.org/3/movie/upcoming?api_key=a1a9e1de8e67ed65ed9dad9828127182"
     }
     
+    struct CategoryConstants {
+        static let categoryList = ["Top Rated", "Popular", "Upcoming"]
+    }
 }

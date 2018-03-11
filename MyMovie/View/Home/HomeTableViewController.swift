@@ -14,26 +14,29 @@ class HomeTableViewController: UITableViewController {
     var upcomingMovies = [Movie]()
     var topRatedMovies = [Movie]()
     var popularMovies = [Movie]()
-    var homeTableModel: HomeTableViewModel?
+    var homeTableModel = HomeTableViewModel()
     let sections: Int = 5
+    var loadView = ActivityView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.homeTableModel = HomeTableViewModel(delegate: self)
         self.getMovies()
     }
 
     func getMovies() {
-        let loadView: ActivityView = Bundle.main.loadNibNamed("LoadView", owner: self, options: nil)![0] as! ActivityView
-        loadView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-        self.view.addSubview(loadView)
-        view.bringSubview(toFront: self.view)
+        self.configureView()
         
-        self.homeTableModel?.getMovies(completionHandler: { (sucess) in
+        self.homeTableModel.getMovies(completionHandler: { (sucess) in
             self.tableView.reloadData()
-            loadView.activityIndicator.stopAnimating()
-            loadView.removeFromSuperview()
+            self.loadView.activityIndicator.stopAnimating()
+            self.loadView.removeFromSuperview()
         })
+    }
+    
+    func configureView(){
+        self.loadView = Bundle.main.loadNibNamed("LoadView", owner: self, options: nil)![0] as! ActivityView
+        self.loadView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        UIApplication.shared.keyWindow?.addSubview(loadView)
     }
 }
 
@@ -45,59 +48,26 @@ extension HomeTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        default:
-            return 0
-        }
+        return homeTableModel.getNumberOfRowsInSection(section: section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "mainMoviesCell", for: indexPath) as! MainMoviesTableViewCell
-            cell.getMovie(movies: self.wathingNowMovies)
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "homeMoviesCell", for: indexPath) as! HomeMoviesTableViewCell
-            
-            return cell
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-            return cell
-        }
+        let cell = self.homeTableModel.configureCells(tableView: tableView, indexPath: indexPath)
+        return cell
     }
 }
+
+// MARK: - Table view delegate
 
 extension HomeTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 160
+            return 260
+        }else if indexPath.section == 1 {
+            return 250
         }
         
         return 0
-    }
-}
-
-extension HomeTableViewController: HomeDelegate {
-    func getTopRatingMovies(movies: [Movie]) {
-        self.topRatedMovies = movies
-    }
-    
-    func getPopularMovies(movies: [Movie]) {
-        self.popularMovies = movies
-    }
-    
-    func getUpcomingMovies(movies: [Movie]) {
-        self.upcomingMovies = movies
-    }
-    
-    func getNowPlayingMovies(movies: [Movie]) {
-        self.wathingNowMovies = movies
-    }
-    
-    func getError(error: String) {
         
     }
 }
