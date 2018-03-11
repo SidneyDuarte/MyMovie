@@ -9,20 +9,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var wathingNowMovies = [Movie]()
+    var popularMovies = [Movie]()
+    var topRatedMovies = [Movie]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let model = HomeTableViewModel()
-        model.getMostPopularMovie { (movie) in
-            print("teste")
-        }
+        self.getMovies()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func getMovies() {
         
+//        self.homeTableModel?.getMovies(completionHandler: { (sucess) in
+//            view.activityIndicator.stopAnimating()
+//            view.removeFromSuperview()
+//        })
     }
-
-
 }
 

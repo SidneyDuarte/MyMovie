@@ -11,25 +11,25 @@ import Alamofire
 
 class ApiProvider: NSObject {
     
-    static func getMovie(urlString: String, completionHandler:@escaping (_ movies: [Movie]) -> (), errorHandler:@escaping (_ error: String) -> ()) {
+    static func getMovie(withURLString urlString: String, andCompletionHandler completionHandler:@escaping (_ movies: [Movie]) -> ()) {
         
         Alamofire.request(urlString).responseJSON { (response) in
             var movies = [Movie]()
             
             guard response.response?.statusCode == 200 else {
-                errorHandler("Erro ao conectar com o servidor.")
+                completionHandler(movies)
                 return
             }
             
             switch response.result {
             case .success(_):
                 guard let json: [String: Any] = response.result.value as? [String: Any] else {
-                    errorHandler("Erro ao conectar com o servidor.")
+                    completionHandler(movies)
                     return
                 }
                 
                 guard let dictArray = json["results"] as? [[String: Any]] else {
-                    errorHandler("Erro ao conectar com o servidor.")
+                    completionHandler(movies)
                     return
                 }
                 
@@ -39,7 +39,7 @@ class ApiProvider: NSObject {
                 completionHandler(movies)
                 break
             case .failure(_):
-                errorHandler("Erro ao conectar com o servidor.")
+                completionHandler(movies)
                 break
             }
         }

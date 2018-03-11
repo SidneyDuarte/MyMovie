@@ -1,5 +1,5 @@
 //
-//  HomeCollectionViewCell.swift
+//  MainMoviesCell.swift
 //  MyMovie
 //
 //  Created by Sidney Silva on 10/03/2018.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-class HomeCollectionViewCell: UICollectionViewCell {
+class MainMoviesCell: NSObject {
     
 }
