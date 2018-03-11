@@ -7,7 +7,41 @@
 //
 
 import UIKit
+import Alamofire
 
 class ApiProvider: NSObject {
-
+    
+    static func getMovie(withURLString urlString: String, andCompletionHandler completionHandler:@escaping (_ movies: [Movie]) -> ()) {
+        
+        Alamofire.request(urlString).responseJSON { (response) in
+            var movies = [Movie]()
+            
+            guard response.response?.statusCode == 200 else {
+                completionHandler(movies)
+                return
+            }
+            
+            switch response.result {
+            case .success(_):
+                guard let json: [String: Any] = response.result.value as? [String: Any] else {
+                    completionHandler(movies)
+                    return
+                }
+                
+                guard let dictArray = json["results"] as? [[String: Any]] else {
+                    completionHandler(movies)
+                    return
+                }
+                
+                for array in dictArray {
+                    movies.append(Movie(rawData: array))
+                }
+                completionHandler(movies)
+                break
+            case .failure(_):
+                completionHandler(movies)
+                break
+            }
+        }
+    }
 }
