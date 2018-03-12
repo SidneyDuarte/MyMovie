@@ -12,8 +12,8 @@ class Genre: NSObject {
     var id: Int?
     var genreName: String?
     
-    init(id: Int, genreName: String) {
-        self.id = id
-        self.genreName = genreName
+    init(rawData: [String: Any]) {
+        self.id = rawData["id"] as? Int
+        self.genreName = rawData["name"] as? String
     }
 }
