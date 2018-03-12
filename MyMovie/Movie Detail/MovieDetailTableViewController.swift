@@ -26,6 +26,8 @@ class MovieDetailTableViewController: UITableViewController {
         self.movieName.text = movie!.title!
         self.userScore.text = "user score: \(movie!.voteAverange!)"
         self.overView.text = movie!.overView!
+        let date = movie!.releaseDate!.prefix(4)
+        self.movieDate.text = String(date)
         
         let posterPath = movie!.posterPath!
         let urlImage = "http://image.tmdb.org/t/p/w342/" + posterPath
