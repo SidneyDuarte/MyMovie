@@ -12,17 +12,30 @@ class HomeMoviesTableViewCell: UITableViewCell {
     var movies: [Movie]?
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var title: UILabel!
+    var delegate: MovieDelegate?
+    @IBOutlet weak var viewAllButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.collectionView.dataSource = self
-        //self.collectionView.delegate = self
+        self.collectionView.delegate = self
     }
-    
-    @IBAction func tapViewAll(_ sender: Any) {
-        print("Touch!")
+
+    @IBAction func tapViewAllButton(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            self.delegate?.getUrl(urlString: Constants.UrlConstants.popularUrl)
+            break
+        case 1:
+            self.delegate?.getUrl(urlString: Constants.UrlConstants.topRatedMovies)
+            break
+        case 2:
+            self.delegate?.getUrl(urlString: Constants.UrlConstants.upcomingMovies)
+            break
+        default:
+            break
+        }
     }
-    
     
     func getMovie(movies: [Movie]) {
         self.movies = movies
@@ -52,6 +65,13 @@ extension HomeMoviesTableViewCell: UICollectionViewDataSource {
         cell.movieName.text = movie.title!
         cell.movieYear.text = movieYear
         return cell
+    }
+}
+
+extension HomeMoviesTableViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movie = movies![indexPath.row]
+        self.delegate?.getMovie(movie: movie)
     }
 }
 

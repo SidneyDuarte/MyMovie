@@ -17,6 +17,7 @@ class HomeTableViewController: UITableViewController {
     var homeTableModel = HomeTableViewModel()
     let sections: Int = 5
     var loadView = ActivityView()
+    var genre: Genre?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,8 @@ extension HomeTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.homeTableModel.configureCells(tableView: tableView, indexPath: indexPath)
+        let cell = self.homeTableModel.configureCells(tableView: tableView, indexPath: indexPath, delegate: self)
+        cell.selectionStyle = .none
         return cell
     }
 }
@@ -61,13 +63,43 @@ extension HomeTableViewController {
 
 extension HomeTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 260
-        }else if indexPath.section == 1 {
-            return 250
-        }
+        let height = self.homeTableModel.getHeightForRow(indexPath: indexPath)
+        return height
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        return 0
-        
+    }
+}
+
+// MARK: - Navigation
+
+extension HomeTableViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.homeTableModel.configureNavigation(segue: segue, viewController: self, sender: sender)
+    }
+}
+
+// MARK: - Genre delegate
+
+extension HomeTableViewController: GenreDelegate {
+    func getGenre(genre: Genre) {
+        self.genre = genre
+        let urlString = "\(Constants.UrlConstants.filterByGenreUrl)\(genre.id!)"
+        self.performSegue(withIdentifier: "movieListSegue", sender: urlString)
+    }
+}
+
+// MARK: - Movie delegate
+
+extension HomeTableViewController: MovieDelegate {
+    func getMovie(movie: Movie) {
+        let movie = movie
+        self.performSegue(withIdentifier: "detailMovieByCathalogSegue", sender: movie)
+    }
+    
+    func getUrl(urlString: String) {
+        let url = urlString
+        self.performSegue(withIdentifier: "movieListSegue", sender: url)
     }
 }

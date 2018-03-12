@@ -11,8 +11,9 @@ import UIKit
 class MainMoviesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var currentItem: Int = 1
+    var mainMoviesViewCell = MainMoviesCellViewMOdel()
     var movies: [Movie]?
+    var delegate: MovieDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,17 +34,7 @@ class MainMoviesTableViewCell: UITableViewCell {
     }
     
     @objc func scrollToNextCell(){
-        let indexPath = IndexPath(item: self.currentItem, section: 0)
-
-        if self.currentItem < self.collectionView.numberOfItems(inSection: 0) {
-            self.collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
-            
-            currentItem += 1
-        } else {
-            let initialIndex = IndexPath(item: 0, section: 0)
-            self.collectionView.scrollToItem(at: initialIndex, at: .right, animated: false)
-            currentItem = 1
-        }
+        self.mainMoviesViewCell.configureScrollCell(collectionView: self.collectionView)
     }
 
     func startTimer() {
@@ -58,13 +49,8 @@ class MainMoviesTableViewCell: UITableViewCell {
 
 extension MainMoviesTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if movies!.count <= 0 {
-            return 0
-        }else if movies!.count < 5 {
-            return movies!.count
-        }
-        
-        return 5
+        let rows = mainMoviesViewCell.getNumberOfItensInSection(movies: movies!)
+        return rows
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -81,7 +67,8 @@ extension MainMoviesTableViewCell: UICollectionViewDataSource {
 
 extension MainMoviesTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let movie = movies![indexPath.row]
+        self.delegate?.getMovie(movie: movie)
     }
     
 }
